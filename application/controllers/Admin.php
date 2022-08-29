@@ -1089,45 +1089,6 @@ class Admin extends CI_Controller
         $this->load->view('backend/index', $page_data);
         
     }
-    /**********MANAGE DORMITORY / HOSTELS / ROOMS ********************/
-    function dormitory($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect('login', 'refresh');
-        if ($param1 == 'create') {
-            $data['name']           = $this->input->post('name');
-            $data['number_of_room'] = $this->input->post('number_of_room');
-            $data['description']    = $this->input->post('description');
-            $this->db->insert('dormitory', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            redirect(base_url() . 'index.php?admin/dormitory', 'refresh');
-        }
-        if ($param1 == 'do_update') {
-            $data['name']           = $this->input->post('name');
-            $data['number_of_room'] = $this->input->post('number_of_room');
-            $data['description']    = $this->input->post('description');
-            
-            $this->db->where('dormitory_id', $param2);
-            $this->db->update('dormitory', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
-            redirect(base_url() . 'index.php?admin/dormitory', 'refresh');
-        } else if ($param1 == 'edit') {
-            $page_data['edit_data'] = $this->db->get_where('dormitory', array(
-                'dormitory_id' => $param2
-            ))->result_array();
-        }
-        if ($param1 == 'delete') {
-            $this->db->where('dormitory_id', $param2);
-            $this->db->delete('dormitory');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
-            redirect(base_url() . 'index.php?admin/dormitory', 'refresh');
-        }
-        $page_data['dormitories'] = $this->db->get('dormitory')->result_array();
-        $page_data['page_name']   = 'dormitory';
-        $page_data['page_title']  = 'Manage Dormitory';
-        $this->load->view('backend/index', $page_data);
-        
-    }
     
     /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
     function noticeboard($param1 = '', $param2 = '', $param3 = '')

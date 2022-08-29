@@ -53,6 +53,7 @@
 	</script>
     
     <!-- (Normal Modal)-->
+    <!--function pop up  for deleting the  information-->
     <div class="modal fade" id="modal-4">
         <div class="modal-dialog">
             <div class="modal-content" style="margin-top:100px;">

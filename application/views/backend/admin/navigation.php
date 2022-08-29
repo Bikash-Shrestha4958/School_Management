@@ -238,60 +238,6 @@
             </a>
         </li>
 
-        <!-- ACCOUNTING -->
-        <li class="<?php
-        if ($page_name == 'income' ||
-                $page_name == 'expense' ||
-                    $page_name == 'expense_category')
-                        echo 'opened active';
-        ?> ">
-            <a href="#">
-                <i class="entypo-suitcase"></i>
-                <span><?php echo ('Accounting Section'); ?></span>
-            </a>
-            <ul>
-                <li class="<?php if ($page_name == 'income') echo 'active'; ?> ">
-                    <a href="<?php echo base_url(); ?>index.php?admin/income">
-                        <span><i class="entypo-dot"></i> <?php echo ('Income'); ?></span>
-                    </a>
-                </li>
-                <li class="<?php if ($page_name == 'expense') echo 'active'; ?> ">
-                    <a href="<?php echo base_url(); ?>index.php?admin/expense">
-                        <span><i class="entypo-dot"></i> <?php echo ('Expense'); ?></span>
-                    </a>
-                </li>
-                <li class="<?php if ($page_name == 'expense_category') echo 'active'; ?> ">
-                    <a href="<?php echo base_url(); ?>index.php?admin/expense_category">
-                        <span><i class="entypo-dot"></i> <?php echo ('Expense category'); ?></span>
-                    </a>
-                </li>
-            </ul>
-        </li>
-
-        <!-- LIBRARY -->
-        <li class="<?php if ($page_name == 'book') echo 'active'; ?> ">
-            <a href="<?php echo base_url(); ?>index.php?admin/book">
-                <i class="entypo-book"></i>
-                <span><?php echo ('Library'); ?></span>
-            </a>
-        </li>
-
-        <!-- TRANSPORT -->
-        <li class="<?php if ($page_name == 'transport') echo 'active'; ?> ">
-            <a href="<?php echo base_url(); ?>index.php?admin/transport">
-                <i class="entypo-location"></i>
-                <span><?php echo ('Transportation'); ?></span>
-            </a>
-        </li>
-
-        <!-- DORMITORY -->
-        <li class="<?php if ($page_name == 'dormitory') echo 'active'; ?> ">
-            <a href="<?php echo base_url(); ?>index.php?admin/dormitory">
-                <i class="entypo-home"></i>
-                <span><?php echo ('Dormitory'); ?></span>
-            </a>
-        </li>
-
         <!-- NOTICEBOARD -->
         <li class="<?php if ($page_name == 'noticeboard') echo 'active'; ?> ">
             <a href="<?php echo base_url(); ?>index.php?admin/noticeboard">

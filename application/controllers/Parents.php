@@ -203,17 +203,7 @@ class Parents extends CI_Controller
         $this->load->view('backend/index', $page_data);
         
     }
-    /**********MANAGE DORMITORY / HOSTELS / ROOMS ********************/
-    function dormitory($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('parent_login') != 1)
-            redirect('login', 'refresh');
-        
-        $page_data['dormitories'] = $this->db->get('dormitory')->result_array();
-        $page_data['page_name']   = 'dormitory';
-        $page_data['page_title']  = get_phrase('manage_dormitory');
-        $this->load->view('backend/index', $page_data);
-        
+    
     }
     
     /**********WATCH NOTICEBOARD AND EVENT ********************/
