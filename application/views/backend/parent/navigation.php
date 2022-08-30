@@ -118,13 +118,6 @@
             </a>
         </li>
 
-        <!-- TRANSPORT -->
-        <li class="<?php if ($page_name == 'transport') echo 'active'; ?> ">
-            <a href="<?php echo base_url(); ?>index.php?parents/transport">
-                <i class="entypo-location"></i>
-                <span><?php echo ('Transport'); ?></span>
-            </a>
-        </li>
 
         <!-- NOTICEBOARD -->
         <li class="<?php if ($page_name == 'noticeboard') echo 'active'; ?> ">
