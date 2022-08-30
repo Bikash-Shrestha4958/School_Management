@@ -110,15 +110,6 @@
         </li>
 
 
-        <!-- LIBRARY -->
-        <li class="<?php if ($page_name == 'book') echo 'active'; ?> ">
-            <a href="<?php echo base_url(); ?>index.php?parents/book">
-                <i class="entypo-book"></i>
-                <span><?php echo ('Library'); ?></span>
-            </a>
-        </li>
-
-
         <!-- NOTICEBOARD -->
         <li class="<?php if ($page_name == 'noticeboard') echo 'active'; ?> ">
             <a href="<?php echo base_url(); ?>index.php?parents/noticeboard">

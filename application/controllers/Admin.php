@@ -57,47 +57,7 @@ class Admin extends CI_Controller
 	}
 	
 	
-	    /****MANAGE Academic Session*****/
-	
-	function acd_session($param1 = '', $param2 = '')
-    {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect(base_url(), 'refresh');
-        if ($param1 == 'create') {
-            $data['name']         = $this->input->post('name');
-			$data['strt_dt'] = date('Y-m-d',strtotime($this->input->post('strt_dt')));
-            $data['end_dt'] = date('Y-m-d',strtotime($this->input->post('end_dt')));
-            $data['is_open']   = $this->input->post('is_open');
-            $this->db->insert('acd_session', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            redirect(base_url() . 'index.php?admin/acd_session/', 'refresh');
-        }
-        if ($param1 == 'do_update') {
-            $data['name']         = $this->input->post('name');
-          	$data['strt_dt'] = date('Y-m-d',strtotime($this->input->post('strt_dt')));
-            $data['end_dt'] = date('Y-m-d',strtotime($this->input->post('end_dt')));
-            $data['is_open']   = $this->input->post('is_open');
-            
-            $this->db->where('id', $param2);
-            $this->db->update('acd_session', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
-            redirect(base_url() . 'index.php?admin/acd_session/', 'refresh');
-        } else if ($param1 == 'edit') {
-            $page_data['edit_data'] = $this->db->get_where('acd_session', array(
-                'id' => $param2
-            ))->result_array();
-        }
-        if ($param1 == 'delete') {
-            $this->db->where('id', $param2);
-            $this->db->delete('acd_session');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
-            redirect(base_url() . 'index.php?admin/acd_session/', 'refresh');
-        }
-        $page_data['acdSession']    = $this->db->get('acd_session')->result_array();
-        $page_data['page_name']  = 'acd_session';
-		$page_data['page_title'] = 'Academic Session';
-        $this->load->view('backend/index', $page_data);
-    }
+	 
 	 /****MANAGE ONLINE ADMISSION*****/
 	function online_admission($param1 = '', $param2 = '', $param3 = '')
      {
@@ -224,52 +184,6 @@ class Admin extends CI_Controller
 	    //$html=$this->load->view('backend/admin/onlineAdmissionRept', $page_data, true);     
         //pdf_create($html, 'AdmissionForm-'.$param1);
 			
-	}
-	function student_bulk_add($param1 = '')
-	{
-		if ($this->session->userdata('admin_login') != 1)
-            redirect(base_url(), 'refresh');
-			
-		if ($param1 == 'import_excel')
-		{
-			move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/student_import.xlsx');
-			// Importing excel sheet for bulk student uploads
-
-			include 'simplexlsx.class.php';
-			
-			$xlsx = new SimpleXLSX('uploads/student_import.xlsx');
-			
-			list($num_cols, $num_rows) = $xlsx->dimension();
-			$f = 0;
-			foreach( $xlsx->rows() as $r ) 
-			{
-				// Ignore the inital name row of excel file
-				if ($f == 0)
-				{
-					$f++;
-					continue;
-				}
-				for( $i=0; $i < $num_cols; $i++ )
-				{
-					if ($i == 0)	    $data['name']			=	$r[$i];
-					else if ($i == 1)	$data['birthday']		=	$r[$i];
-					else if ($i == 2)	$data['sex']		    =	$r[$i];
-					else if ($i == 3)	$data['address']		=	$r[$i];
-					else if ($i == 4)	$data['phone']			=	$r[$i];
-					else if ($i == 5)	$data['email']			=	$r[$i];
-					else if ($i == 6)	$data['password']		=	$r[$i];
-					else if ($i == 7)	$data['roll']			=	$r[$i];
-				}
-				$data['class_id']	=	$this->input->post('class_id');
-				
-				$this->db->insert('student' , $data);
-				//print_r($data);
-			}
-			redirect(base_url() . 'index.php?admin/student_information/' . $this->input->post('class_id'), 'refresh');
-		}
-		$page_data['page_name']  = 'student_bulk_add';
-		$page_data['page_title'] = 'Add Bulk Student';
-		$this->load->view('backend/index', $page_data);
 	}
 	
 	function student_information($class_id = '')

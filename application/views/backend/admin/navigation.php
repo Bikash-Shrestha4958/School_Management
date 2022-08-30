@@ -101,9 +101,7 @@
         <!-- STUDENT -->
         <li class="<?php
         if ($page_name == 'student_add' ||
-		        $page_name == 'acd_session' ||
 		        $page_name == 'online_admission' ||
-                $page_name == 'student_bulk_add' ||
                 $page_name == 'student_information' ||
                 $page_name == 'student_marksheet')
             echo 'opened active has-sub';
@@ -115,11 +113,7 @@
             <ul>
                 <!-- STUDENT ADMISSION -->
                 
-                 <li class="<?php if ($page_name == 'acd_session') echo 'active'; ?> ">
-                    <a href="<?php echo base_url(); ?>index.php?admin/acd_session">
-                        <span><i class="entypo-dot"></i> <?php echo ('Academic Session'); ?></span>
-                    </a>
-                </li>
+                 
                 
                    
                  
@@ -129,12 +123,6 @@
                     </a>
                 </li>
 
-                <!-- STUDENT BULK ADMISSION -->
-                <li class="<?php if ($page_name == 'student_bulk_add') echo 'active'; ?> ">
-                    <a href="<?php echo base_url(); ?>index.php?admin/student_bulk_add">
-                        <span><i class="entypo-dot"></i> <?php echo ('Admit Bulk Student'); ?></span>
-                    </a>
-                </li>
 
                 <!-- STUDENT INFORMATION -->
                 <li class="<?php if ($page_name == 'student_information') echo 'opened active'; ?> ">
