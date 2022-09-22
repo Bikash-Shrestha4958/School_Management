@@ -54,7 +54,7 @@
 							<td>
                             <?php echo form_open(base_url() . 'index.php?parents/invoice/' . $row['student_id'] . '/make_payment');?>
                                 	<input type="hidden" name="invoice_id" value="<?php echo $row2['invoice_id'];?>" />
-                                		<button type="submit" class="btn btn-info"><i class="entypo-paypal"></i> Pay with paypal</button>
+                                		<button type="submit" class="btn btn-info">Pay </button>
                                 </form>
                                 
                             

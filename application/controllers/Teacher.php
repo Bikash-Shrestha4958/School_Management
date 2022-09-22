@@ -2,12 +2,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-/*	
- *	@author 	: Farid Ahmed
- *	date		: 27 september, 2014
- *	SIgnetBD
- *	efarid08@gmail.com
- */
+
 
 class Teacher extends CI_Controller
 {
@@ -385,30 +380,6 @@ class Teacher extends CI_Controller
     }
     
     
-    /**********MANAGE LIBRARY / BOOKS********************/
-    function book($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('teacher_login') != 1)
-            redirect('login', 'refresh');
-        
-        $page_data['books']      = $this->db->get('book')->result_array();
-        $page_data['page_name']  = 'book';
-        $page_data['page_title'] = get_phrase('manage_library_books');
-        $this->load->view('backend/index', $page_data);
-        
-    }
-    /**********MANAGE TRANSPORT / VEHICLES / ROUTES********************/
-    function transport($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('teacher_login') != 1)
-            redirect('login', 'refresh');
-        
-        $page_data['transports'] = $this->db->get('transport')->result_array();
-        $page_data['page_name']  = 'transport';
-        $page_data['page_title'] = get_phrase('manage_transport');
-        $this->load->view('backend/index', $page_data);
-        
-    }
     
     /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
     function noticeboard($param1 = '', $param2 = '', $param3 = '')

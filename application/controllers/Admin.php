@@ -2,12 +2,7 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-/*	
- *	@author 	: Farid Ahmed
- *	date		: 27 september, 2014
- *	SIgnetBD
- *	efarid08@gmail.com
- */
+
 
 class Admin extends CI_Controller
 {
@@ -57,7 +52,47 @@ class Admin extends CI_Controller
 	}
 	
 	
-	 
+	    /****MANAGE Academic Session*****/
+	
+	function acd_session($param1 = '', $param2 = '')
+    {
+        if ($this->session->userdata('admin_login') != 1)
+            redirect(base_url(), 'refresh');
+        if ($param1 == 'create') {
+            $data['name']         = $this->input->post('name');
+			$data['strt_dt'] = date('Y-m-d',strtotime($this->input->post('strt_dt')));
+            $data['end_dt'] = date('Y-m-d',strtotime($this->input->post('end_dt')));
+            $data['is_open']   = $this->input->post('is_open');
+            $this->db->insert('acd_session', $data);
+            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
+            redirect(base_url() . 'index.php?admin/acd_session/', 'refresh');
+        }
+        if ($param1 == 'do_update') {
+            $data['name']         = $this->input->post('name');
+          	$data['strt_dt'] = date('Y-m-d',strtotime($this->input->post('strt_dt')));
+            $data['end_dt'] = date('Y-m-d',strtotime($this->input->post('end_dt')));
+            $data['is_open']   = $this->input->post('is_open');
+            
+            $this->db->where('id', $param2);
+            $this->db->update('acd_session', $data);
+            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            redirect(base_url() . 'index.php?admin/acd_session/', 'refresh');
+        } else if ($param1 == 'edit') {
+            $page_data['edit_data'] = $this->db->get_where('acd_session', array(
+                'id' => $param2
+            ))->result_array();
+        }
+        if ($param1 == 'delete') {
+            $this->db->where('id', $param2);
+            $this->db->delete('acd_session');
+            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+            redirect(base_url() . 'index.php?admin/acd_session/', 'refresh');
+        }
+        $page_data['acdSession']    = $this->db->get('acd_session')->result_array();
+        $page_data['page_name']  = 'acd_session';
+		$page_data['page_title'] = 'Academic Session';
+        $this->load->view('backend/index', $page_data);
+    }
 	 /****MANAGE ONLINE ADMISSION*****/
 	function online_admission($param1 = '', $param2 = '', $param3 = '')
      {
@@ -185,6 +220,7 @@ class Admin extends CI_Controller
         //pdf_create($html, 'AdmissionForm-'.$param1);
 			
 	}
+	
 	
 	function student_information($class_id = '')
 	{
@@ -917,92 +953,7 @@ class Admin extends CI_Controller
         $this->load->view('backend/index', $page_data);
     }
 
-    /**********MANAGE LIBRARY / BOOKS********************/
-    function book($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect('login', 'refresh');
-        if ($param1 == 'create') {
-            $data['name']        = $this->input->post('name');
-            $data['description'] = $this->input->post('description');
-            $data['price']       = $this->input->post('price');
-            $data['author']      = $this->input->post('author');
-            $data['class_id']    = $this->input->post('class_id');
-            $data['status']      = $this->input->post('status');
-            $this->db->insert('book', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            redirect(base_url() . 'index.php?admin/book', 'refresh');
-        }
-        if ($param1 == 'do_update') {
-            $data['name']        = $this->input->post('name');
-            $data['description'] = $this->input->post('description');
-            $data['price']       = $this->input->post('price');
-            $data['author']      = $this->input->post('author');
-            $data['class_id']    = $this->input->post('class_id');
-            $data['status']      = $this->input->post('status');
-            
-            $this->db->where('book_id', $param2);
-            $this->db->update('book', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
-            redirect(base_url() . 'index.php?admin/book', 'refresh');
-        } else if ($param1 == 'edit') {
-            $page_data['edit_data'] = $this->db->get_where('book', array(
-                'book_id' => $param2
-            ))->result_array();
-        }
-        if ($param1 == 'delete') {
-            $this->db->where('book_id', $param2);
-            $this->db->delete('book');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
-            redirect(base_url() . 'index.php?admin/book', 'refresh');
-        }
-        $page_data['books']      = $this->db->get('book')->result_array();
-        $page_data['page_name']  = 'book';
-        $page_data['page_title'] = 'Manage Library Books';
-        $this->load->view('backend/index', $page_data);
-        
-    }
-    /**********MANAGE TRANSPORT / VEHICLES / ROUTES********************/
-    function transport($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('admin_login') != 1)
-            redirect('login', 'refresh');
-        if ($param1 == 'create') {
-            $data['route_name']        = $this->input->post('route_name');
-            $data['number_of_vehicle'] = $this->input->post('number_of_vehicle');
-            $data['description']       = $this->input->post('description');
-            $data['route_fare']        = $this->input->post('route_fare');
-            $this->db->insert('transport', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
-            redirect(base_url() . 'index.php?admin/transport', 'refresh');
-        }
-        if ($param1 == 'do_update') {
-            $data['route_name']        = $this->input->post('route_name');
-            $data['number_of_vehicle'] = $this->input->post('number_of_vehicle');
-            $data['description']       = $this->input->post('description');
-            $data['route_fare']        = $this->input->post('route_fare');
-            
-            $this->db->where('transport_id', $param2);
-            $this->db->update('transport', $data);
-            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
-            redirect(base_url() . 'index.php?admin/transport', 'refresh');
-        } else if ($param1 == 'edit') {
-            $page_data['edit_data'] = $this->db->get_where('transport', array(
-                'transport_id' => $param2
-            ))->result_array();
-        }
-        if ($param1 == 'delete') {
-            $this->db->where('transport_id', $param2);
-            $this->db->delete('transport');
-            $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
-            redirect(base_url() . 'index.php?admin/transport', 'refresh');
-        }
-        $page_data['transports'] = $this->db->get('transport')->result_array();
-        $page_data['page_name']  = 'transport';
-        $page_data['page_title'] = 'Manage Transport';
-        $this->load->view('backend/index', $page_data);
-        
-    }
+    
     
     /***MANAGE EVENT / NOTICEBOARD, WILL BE SEEN BY ALL ACCOUNTS DASHBOARD**/
     function noticeboard($param1 = '', $param2 = '', $param3 = '')
