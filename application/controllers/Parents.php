@@ -2,12 +2,6 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-/*	
- *	@author 	: Farid Ahmed
- *	date		: 27 september, 2014
- *	SIgnetBD
- *	efarid08@gmail.com
- */
 
 class Parents extends CI_Controller
 {
@@ -122,18 +116,7 @@ class Parents extends CI_Controller
                 'invoice_id' => $invoice_id
             ))->row();
             
-            /****TRANSFERRING USER TO PAYPAL TERMINAL****/
-            $this->paypal->add_field('rm', 2);
-            $this->paypal->add_field('no_note', 0);
-            $this->paypal->add_field('item_name', $invoice_details->title);
-            $this->paypal->add_field('amount', $invoice_details->amount);
-            $this->paypal->add_field('custom', $invoice_details->invoice_id);
-            $this->paypal->add_field('business', $system_settings->description);
-            $this->paypal->add_field('notify_url', base_url() . 'index.php?parents/invoice/paypal_ipn');
-            $this->paypal->add_field('cancel_return', base_url() . 'index.php?parents/invoice/paypal_cancel');
-            $this->paypal->add_field('return', base_url() . 'index.php?parents/invoice/paypal_success');
-            
-            $this->paypal->submit_paypal_post();
+           
             // submit the fields to paypal
         }
         if ($param1 == 'paypal_ipn') {
@@ -179,32 +162,7 @@ class Parents extends CI_Controller
         $this->load->view('backend/index', $page_data);
     }
     
-    /**********MANAGE LIBRARY / BOOKS********************/
-    function book($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('parent_login') != 1)
-            redirect('login', 'refresh');
-        
-        $page_data['books']      = $this->db->get('book')->result_array();
-        $page_data['page_name']  = 'book';
-        $page_data['page_title'] = get_phrase('manage_library_books');
-        $this->load->view('backend/index', $page_data);
-        
-    }
-    /**********MANAGE TRANSPORT / VEHICLES / ROUTES********************/
-    function transport($param1 = '', $param2 = '', $param3 = '')
-    {
-        if ($this->session->userdata('parent_login') != 1)
-            redirect('login', 'refresh');
-        
-        $page_data['transports'] = $this->db->get('transport')->result_array();
-        $page_data['page_name']  = 'transport';
-        $page_data['page_title'] = get_phrase('manage_transport');
-        $this->load->view('backend/index', $page_data);
-        
-    }
     
-    }
     
     /**********WATCH NOTICEBOARD AND EVENT ********************/
     function noticeboard($param1 = '', $param2 = '', $param3 = '')

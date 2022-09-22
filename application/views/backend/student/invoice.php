@@ -39,7 +39,7 @@
 							<td>
                             <?php echo form_open('student/invoice/make_payment');?>
                                 	<input type="hidden" name="invoice_id" 		value="<?php echo $row['invoice_id'];?>" />
-                                		<button type="submit" class="btn btn-info"><i class="entypo-paypal"></i> Pay with paypal</button>
+                                		<button type="submit" class="btn btn-info">Pay </button>
                                 </form>
                                 
                             

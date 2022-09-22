@@ -22,68 +22,6 @@
         </div>
     </div>
     
-	<div class="col-md-4">
-		<div class="row">
-            <div class="col-md-12">
-            
-                <div class="tile-stats tile-red">
-                    <div class="icon"><i class="fa fa-group"></i></div>
-                    <div class="num" data-start="0" data-end="<?php echo $this->db->count_all('student');?>" 
-                    		data-postfix="" data-duration="1500" data-delay="0">0</div>
-                    
-                    <h3><?php echo ('Student');?></h3>
-                   <p>Total students</p>
-                </div>
-                
-            </div>
-            <div class="col-md-12">
-            
-                <div class="tile-stats tile-green">
-                    <div class="icon"><i class="entypo-users"></i></div>
-                    <div class="num" data-start="0" data-end="<?php echo $this->db->count_all('teacher');?>" 
-                    		data-postfix="" data-duration="800" data-delay="0">0</div>
-                    
-                    <h3><?php echo ('Teacher');?></h3>
-                   <p>Total teachers</p>
-                </div>
-                
-            </div>
-            <div class="col-md-12">
-            
-                <div class="tile-stats tile-aqua">
-                    <div class="icon"><i class="entypo-user"></i></div>
-                    <div class="num" data-start="0" data-end="<?php echo $this->db->count_all('parent');?>" 
-                    		data-postfix="" data-duration="500" data-delay="0">0</div>
-                    
-                    <h3><?php echo ('Parent');?></h3>
-                   <p>Total parents</p>
-                </div>
-                
-            </div>
-            <div class="col-md-12">
-            
-                <div class="tile-stats tile-blue">
-                    <div class="icon"><i class="entypo-chart-bar"></i></div>
-                    <?php 
-							$check	=	array(	'date' => date('Y-m-d') , 'status' => '1' );
-							$query = $this->db->get_where('attendance' , $check);
-							$present_today		=	$query->num_rows();
-						?>
-                    <div class="num" data-start="0" data-end="<?php echo $present_today;?>" 
-                    		data-postfix="" data-duration="500" data-delay="0">0</div>
-                    
-                    <h3><?php echo ('Attendance');?></h3>
-                   <p>Total present student today</p>
-                </div>
-                
-            </div>
-    	</div>
-    </div>
-	
-</div>
-
-
-
     <script>
   $(document).ready(function() {
 	  

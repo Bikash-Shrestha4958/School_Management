@@ -1,10 +1,5 @@
 <hr />
-<a href="#"
-    onclick="showAjaxModal('<?php echo base_url();?>index.php?modal/popup/wholemarks/<?php echo $row['class_id'];?>');"
-    class="btn btn-default">
-    <i class="entypo-chart-bar"></i>
-    <?php echo ('View whole Marksheet');?>
-</a>
+
 <div class="row">
     <div class="col-md-12">
 

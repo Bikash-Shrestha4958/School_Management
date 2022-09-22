@@ -186,8 +186,8 @@
         <li class="<?php
         if ($page_name == 'exam' ||
                 $page_name == 'grade' ||
-                $page_name == 'marks' ||
-                    $page_name == 'exam_marks_sms')
+                $page_name == 'marks' 
+                    )
                         echo 'opened active';
         ?> ">
             <a href="#">
@@ -210,11 +210,7 @@
                         <span><i class="entypo-dot"></i> <?php echo ('Manage Marks'); ?></span>
                     </a>
                 </li>
-                <li class="<?php if ($page_name == 'exam_marks_sms') echo 'active'; ?> ">
-                    <a href="<?php echo base_url(); ?>index.php?admin/exam_marks_sms">
-                        <span><i class="entypo-dot"></i> <?php echo ('Send marks by sms'); ?></span>
-                    </a>
-                </li>
+                
             </ul>
         </li>
 
