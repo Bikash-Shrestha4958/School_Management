@@ -50,16 +50,16 @@ foreach ($edit_data as $row):
         <table width="100%" border="0">    
             <tr>
                 <td align="right" width="80%"><?php echo ('Total Amount'); ?> :</td>
-                <td align="right">$<?php echo $row['amount']; ?></td>
+                <td align="right">Rs.<?php echo $row['amount']; ?></td>
             </tr>
             <tr>
                 <td align="right" width="80%"><h4><?php echo ('Paid Amount'); ?> :</h4></td>
-                <td align="right"><h4>$<?php echo $row['amount_paid']; ?></h4></td>
+                <td align="right"><h4>Rs.<?php echo $row['amount_paid']; ?></h4></td>
             </tr>
             <?php if ($row['due'] != 0):?>
             <tr>
                 <td align="right" width="80%"><h4><?php echo ('Due'); ?> :</h4></td>
-                <td align="right"><h4>$<?php echo $row['due']; ?></h4></td>
+                <td align="right"><h4>Rs.<?php echo $row['due']; ?></h4></td>
             </tr>
             <?php endif;?>
         </table>
@@ -83,17 +83,15 @@ foreach ($edit_data as $row):
                     ?>
                     <tr>
                         <td><?php echo date("d M, Y", $row2['timestamp']); ?></td>
-                        <td>$<?php echo $row2['amount']; ?></td>
+                        <td>Rs.<?php echo $row2['amount']; ?></td>
                         <td>
                             <?php 
                                 if ($row2['method'] == 1)
                                     echo ('Cash');
-                                if ($row2['method'] == 2)
-                                    echo ('Cheque');
+                                
                                 if ($row2['method'] == 3)
                                     echo ('Card');
-                                if ($row2['method'] == 'paypal')
-                                    echo 'Paypal';
+                                
                             ?>
                         </td>
                     </tr>

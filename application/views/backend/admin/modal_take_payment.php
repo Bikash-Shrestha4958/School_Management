@@ -35,12 +35,10 @@ foreach ($edit_data as $row):
                 				<?php 
                 					if ($row2['method'] == 1)
                 						echo ('Cash');
-                					if ($row2['method'] == 2)
-                						echo ('Cheque');
+                					
                 					if ($row2['method'] == 3)
                 						echo ('Card');
-                                    if ($row2['method'] == 'paypal')
-                                        echo 'Paypal';
+                                   
                 				?>
                 			</td>
                 			<td><?php echo date('d M,Y', $row2['timestamp']);?></td>
@@ -98,8 +96,7 @@ foreach ($edit_data as $row):
                         <div class="col-sm-6">
                             <select name="method" class="form-control">
                                 <option value="1"><?php echo ('Cash');?></option>
-                                <option value="2"><?php echo ('Cheque');?></option>
-                                <option value="3"><?php echo ('Card');?></option>
+                                  <option value="3"><?php echo ('Card');?></option>
                             </select>
                         </div>
                     </div>

@@ -187,7 +187,6 @@
                                     <div class="col-sm-9">
                                         <select name="method" class="form-control">
                                             <option value="1"><?php echo ('Cash');?></option>
-                                            <option value="2"><?php echo ('Cheque');?></option>
                                             <option value="3"><?php echo ('Card');?></option>
                                         </select>
                                     </div>
