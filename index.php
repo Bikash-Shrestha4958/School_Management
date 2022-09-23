@@ -1,10 +1,4 @@
 <?php
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 1401fed915d9c12b5c499457a319ef24dbfa8345
 	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'production');
 
 

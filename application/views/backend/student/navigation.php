@@ -104,22 +104,6 @@
         </li>
 
 
-        <!-- LIBRARY -->
-        <li class="<?php if ($page_name == 'book') echo 'active'; ?> ">
-            <a href="<?php echo base_url(); ?>index.php?<?php echo $account_type; ?>/book">
-                <i class="entypo-book"></i>
-                <span><?php echo ('Library'); ?></span>
-            </a>
-        </li>
-
-        <!-- TRANSPORT -->
-        <li class="<?php if ($page_name == 'transport') echo 'active'; ?> ">
-            <a href="<?php echo base_url(); ?>index.php?<?php echo $account_type; ?>/transport">
-                <i class="entypo-location"></i>
-                <span><?php echo ('Transport'); ?></span>
-            </a>
-        </li>
-
         <!-- NOTICEBOARD -->
         <li class="<?php if ($page_name == 'noticeboard') echo 'active'; ?> ">
             <a href="<?php echo base_url(); ?>index.php?<?php echo $account_type; ?>/noticeboard">
